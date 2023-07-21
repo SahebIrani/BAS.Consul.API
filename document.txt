@@ -1,0 +1,74 @@
+
+
+https://medium.com/c-sharp-progarmming/dynamic-configuration-management-with-consul-and-net-core-3b7570113440
+docker pull hashicorp/consul
+docker run  -p 8500:8500 -p 8600:8600/udp --name=consul hashicorp/consul agent -server -bootstrap -ui -client=0.0.0.0
+docker run  -p 8500:8500 -p 8600:8600/udp --name=consul hashicorp/consul agent -server -bootstrap -ui -client=0.0.0.0
+
+You can go to “Services — Consul” to check the UI,
+http://localhost:8500/ui/dc1/services
+
+dotnet add package Winton.Extensions.Configuration.Consul --version 3.3.0
+
+<PackageReference Include="Winton.Extensions.Configuration.Consul" Version="3.3.0" />
+
+Create a new folder with path “BAS.Consul.API/appsettings.Development.json”
+
+
+var builder2 = Host.CreateDefaultBuilder(args);
+
+builder2.ConfigureAppConfiguration((hostingContext, config) =>
+{
+
+});
+
+docker run -d -p 8500:8500 -p 8600:8600/udp --name=my-consul consul agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0
+http://localhost:8500/
+
+dotnet add package Consul --version 1.6.10.3
+
+https://www.jondjones.com/programming/aspnet-core/how-to/essential-net-6-app-settings-tips-master-developer-and-environment-specific-settings/
+https://tsuyoshiushio.medium.com/option-patterns-with-custom-configuration-provider-in-net-1a2fca90c6c3
+
+https://github.com/hashicorp/consul-template
+https://consuldot.net/
+
+https://developer.hashicorp.com/consul/downloads
+Download a copy of the latest Windows version and unzip it into the Consul.Test folder.
+Open a command prompt and cd to the Consul.Test folder.
+Run .\consul.exe agent -dev -config-file test_config.json
+https://releases.hashicorp.com/consul/1.16.0/consul_1.16.0_windows_386.zip
+
+Feedz
+To pull preview versions into your project, use the following NuGet.config file:
+
+consul-template -template "yourpath/appsettings.tpl:yourpath/appsettings.json"  
+
+{{ key "App1/appsettings.json" }}   
+
+
+
+.\consul.exe agent -dev port 8500
+
+
+https://dev.to/engincanv/usage-of-consul-in-net-core-configuration-management-39h5
+
+https://www.nuget.org/packages/Winton.Extensions.Configuration.Consul
+
+https://hub.docker.com/_/consul
+https://hub.docker.com/r/hashicorp/consul
+
+docker run -d --net=host -e 'CONSUL_LOCAL_CONFIG={"skip_leave_on_interrupt": true}' consul agent -server -bind=<external ip> -retry-join=<root agent ip> -bootstrap-expect=<number of server agents>
+docker run -d --net=host -e 'CONSUL_ALLOW_PRIVILEGED_PORTS=' consul -dns-port=53 -recursor=8.8.8.8
+docker run -d --net=host -e 'CONSUL_ALLOW_PRIVILEGED_PORTS=' consul agent -dns-port=53 -recursor=8.8.8.8 -bind=<bridge ip>
+docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
+docker run -d -e CONSUL_BIND_INTERFACE=eth0 consul agent -dev -join=172.17.0.2
+... server 2 starts
+docker run -d -e CONSUL_BIND_INTERFACE=eth0 consul agent -dev -join=172.17.0.2
+... server 3 starts
+
+docker run -d -p 8500:8500 hashicorp/consul
+
+https://developer.hashicorp.com/consul/docs/dynamic-app-config/kv
+https://developer.hashicorp.com/consul/tutorials/interactive/get-started-key-value-store
+
